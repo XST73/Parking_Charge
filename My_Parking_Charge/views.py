@@ -51,7 +51,6 @@ def register(request):
 @csrf_exempt
 @login_required()
 def index(request):
-    print(django.get_version())
     return render(request, "index.html")
 
 

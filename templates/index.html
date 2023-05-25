@@ -13,15 +13,16 @@
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
     <div class="layui-header layui-bg-cyan">
-        <div><a class="layui-logo" href="{% url "My_Parking_Charge:myindex" %}"><b style="font-size: 24px;">智能收费系统</b></a></div>
+        <div><a class="layui-logo" href="{% url "My_Parking_Charge:myindex" %}"><b
+                style="font-size: 24px;">智能收费系统</b></a></div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
-        </ul>
+{#        </ul>#}
         <ul class="layui-nav layui-layout-right">
             {% if user.is_authenticated %}
                 <li class="layui-nav-item">
                     <a href="javascript:;">
 
-                        <img src="/static/img/login.jpg"
+                        <img src="/static/img/avatar.jpg"
                              class="layui-nav-img">
                         {{ user.username }}
                     </a>
@@ -75,9 +76,6 @@
             height: 100%;
             width: 100%;
             background-size: 100% 100%;
-
-            background-image: url("https://wallpaperm.cmcm.com/2d64f9b1d09b9c519b301d4d721adc0c.jpg");
-            background-repeat: no-repeat;
         }
 
     </style>

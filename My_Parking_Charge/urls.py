@@ -5,14 +5,13 @@ from . import views, Ajax_check, data_interface
 
 app_name = "My_Parking_Charge"
 urlpatterns = [
-    path('fo/', views.forloopd),  # 登陆url
+    path('fo/', views.forloopd),
     path('login/', views.mylogin, name="mylogin"),  # 登陆url
     path('register/', views.register, name="myregister"),  # 注册url
 
+    path('', views.index, name="myindex"),  # 后台url
     path('index/', views.index, name="myindex"),  # 后台url
-    # path('base/', views.base, name="base"),  # 测试url
     path('logout/', auth_views.LogoutView.as_view(template_name="Login.html"), name='user_logout'),  # 退出
-    # template_name=''
     path('usual/', views.usual, name="myusual"),  # 后台常规用户url
     path('VIP/', views.VIP, name="myVIP"),  # 后台VIP用户url
 

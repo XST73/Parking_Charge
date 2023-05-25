@@ -1,9 +1,7 @@
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.http import JsonResponse
+
 from .models import *
-from django.http import JsonResponse, HttpResponse
-import  json,datetime,time
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger  #Django 内置分页
-# return returnResponse({'code': 400, 'message': '返回信息'})
-# {"code":0,"msg":"","count":1000,"data":[{}]}
 
 
 # 常规用户的记录数据接口
@@ -58,15 +56,14 @@ def usual_data_interface(request):
     return JsonResponse(data, content_type="application/json")
 
 
-
 # 会员数据接口
 def VIP__data_interface(request):
-    id = request.GET.get("test")                  #搜索重载
-    order = request.GET.get("order")        #排序方式 ： asc  desc or null
-    field =request.GET.get("field")             #排序字段
+    id = request.GET.get("test")  # 搜索重载
+    order = request.GET.get("order")  # 排序方式 ： asc  desc or null
+    field = request.GET.get("field")  # 排序字段
 
     if field:
-        if order =="asc" or order=="":
+        if order == "asc" or order == "":
             user_object = VIPuserInfo.objects.all().order_by("user_ID")
         else:
             user_object = VIPuserInfo.objects.all().order_by("-user_ID")
@@ -74,7 +71,7 @@ def VIP__data_interface(request):
         if id:
             user_object = VIPuserInfo.objects.filter(user_ID=id)
         else:
-            user_object = VIPuserInfo.objects.all()             #常规展示
+            user_object = VIPuserInfo.objects.all()  # 常规展示
     data_list = []
     for i in user_object:
         dict = {}
@@ -108,9 +105,7 @@ def VIP__data_interface(request):
     return JsonResponse(data, content_type="application/json")
 
 
-
-
-#收费接口
+# 收费接口
 def free_data_interface(request):
     id = request.GET.get("id")  # 搜索重载
     order = request.GET.get("order")  # 排序方式 ： asc  desc or null
@@ -142,7 +137,7 @@ def free_data_interface(request):
             dict["userid"] = i.id
             dict["id"] = i.user_id.user_ID
             dict["free"] = str(i.user_free)
-            dict["sumtime"]= str(hours)
+            dict["sumtime"] = str(hours)
             if i.end_free_time == None:
                 end_free = ''
             else:
@@ -170,8 +165,3 @@ def free_data_interface(request):
 
     data = {"code": 0, "msg": "", "count": user_object.count(), "data": articles}
     return JsonResponse(data, content_type="application/json")
-
-
-
-
-

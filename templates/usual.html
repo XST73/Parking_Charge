@@ -1,7 +1,7 @@
 {% extends "index.html" %}
 {% load static %}
 
-{% block title %}常规用户{% endblock %}
+{% block title %}someting here...{% endblock %}
 {% block content %}
 
     <div class=" demoTable">
@@ -116,7 +116,7 @@
                         var field = $(this).data('field');
                         var ID = data.userid;
                         var numer = data.id
-                        console.log(ID,data.id)
+                        console.log(ID, data.id)
                         laydate.render({
                             elem: this.firstChild
                             , show: true //直接显示
@@ -128,7 +128,7 @@
                                     url: "{% url "My_Parking_Charge:usual_update" %}",
                                     type: "post",
                                     dataType: "json",
-                                    data: {'user_end': value, "userid": ID,"number":numer},
+                                    data: {'user_end': value, "userid": ID, "number": numer},
                                     success: function (e) {
                                         if (e == "1") {
                                             layer.msg("操作成功！", {icon: 1})

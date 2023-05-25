@@ -22,13 +22,11 @@ class VIPuserInfo(models.Model):  # 会员用户信息注册表
 
 
 class User_Info(models.Model):  # 往来用户记录信息表
-    GENDER_CHOICE = (("0","常规用户"), ("1", "会员"))
+    GENDER_CHOICE = (("0", "常规用户"), ("1", "会员"))
     user_ID = models.CharField(max_length=50, verbose_name="用户车牌号", null=False, blank=False)
-    user_choise = models.CharField(choices=GENDER_CHOICE,verbose_name="是否会员",max_length=10)
+    user_choise = models.CharField(choices=GENDER_CHOICE, verbose_name="是否会员", max_length=10)
     user_starttime = models.DateTimeField(verbose_name="停车时间", blank=True, null=True, auto_now_add=False)
-    user_endtime = models.DateTimeField(verbose_name="结束停车时间", blank=True, null=True,auto_now_add=False )
-
-
+    user_endtime = models.DateTimeField(verbose_name="结束停车时间", blank=True, null=True, auto_now_add=False)
 
     class meta:
         verbose_name = "往来用户记录信息表"
@@ -38,21 +36,14 @@ class User_Info(models.Model):  # 往来用户记录信息表
         return self.user_ID
 
 
-
-
-
-
-
-class user_charge(models.Model):  #往来用户收费表
-    user_id = models.ForeignKey("User_Info",on_delete=models.CASCADE,verbose_name="用户外键",related_name="us")
-    user_free = models.CharField(max_length=60,verbose_name="产生费用",blank=True,null=True)
-    end_free_time = models.DateTimeField(verbose_name="清算费用时间",blank=True,null=True)
-
+class user_charge(models.Model):  # 往来用户收费表
+    user_id = models.ForeignKey("User_Info", on_delete=models.CASCADE, verbose_name="用户外键", related_name="us")
+    user_free = models.CharField(max_length=60, verbose_name="产生费用", blank=True, null=True)
+    end_free_time = models.DateTimeField(verbose_name="清算费用时间", blank=True, null=True)
 
     class meta:
         verbose_name = "往来用户收费表"
         verbose_name_plural = verbose_name
-
 
     def __str__(self):
         return self.user_id

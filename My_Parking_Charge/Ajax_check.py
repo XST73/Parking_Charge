@@ -35,13 +35,14 @@ def admin_login(request):
 @require_POST
 def usualdelete(request):
     user_ID = request.POST.getlist("ID")
-    print(user_ID, str(user_ID), type(user_ID))
+    print(user_ID, type(user_ID))
     for x in user_ID:
         try:
             models.User_Info.objects.filter(id=x).delete()
-            return HttpResponse("1")
+            print("删除成功", x)
         except:
             return HttpResponse("2")
+    return HttpResponse("1")
 
 
 # 会员删除ajax验证
@@ -49,13 +50,15 @@ def usualdelete(request):
 @require_POST
 def VIPdelete(request):
     user_ID = request.POST.getlist("ID")
-    print("会员删除", user_ID, str(user_ID), type(user_ID))
+    print("会员删除", user_ID, type(user_ID))
     for x in user_ID:
         try:
             models.VIPuserInfo.objects.filter(id=x).delete()
-            return HttpResponse("1")
+            print("删除成功", x)
         except:
             return HttpResponse("2")
+
+    return HttpResponse("1")
 
 
 # 会员修改 ajax验证
